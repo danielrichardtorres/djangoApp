@@ -1,0 +1,12 @@
+{% extends 'scheduler/base.html' %} {% load crispy_forms_tags %} 
+{% block content %}
+<h2>You have been logged out</h2>
+<div class="content-section">
+  <div class="border-top pt-3">
+    <small class="text-muted">
+      Didn't mean to? Click here to log back in.
+      <a href="{% url 'login' %}">Login</a>
+    </small>
+  </div>
+</div>
+{% endblock %}

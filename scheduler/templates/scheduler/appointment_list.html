@@ -1,0 +1,62 @@
+{% extends 'scheduler/base.html' %} {% block content%}
+
+<div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+        <div class="content-section">
+        <h1> Welcome, {{ user.first_name}}! 😊</h1>
+        <h4> Here's your schedule for this week</h4>
+        </div>
+    </div>
+    <div class="col-sm-2"></div>
+</div>
+
+
+<div class="row">
+
+    <div class="col-sm-2"></div>
+
+    <div class="col-sm-8">
+        
+        
+        
+        <div class="accordion" id="accordionToday">
+            {% for appt in appointments%}
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#appt{{appt.id}}" aria-expanded="false" aria-controls="collapseTwo">
+                        <h3>{{ appt.subject }} on {{appt.datetime}}</h3> 
+                        </button>
+                    </h2>
+                    <div id="appt{{appt.id}}" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                        <p>Teacher: {{ appt.teacher.user.first_name }} </p>
+                        <strong>Homework: </strong>Equations of a Circle 1, 2, 3
+                        <p class='text-muted'> Reminder: Bring your scientific or graphing calculator</p>
+                        </div>
+                    </div>
+                </div>
+            {%endfor%}
+            
+
+ 
+            
+            </div>
+        </div>
+    
+
+    </div>
+    <div class="col-sm-2"></div>
+</div>
+
+
+</div>
+
+    
+
+
+    
+<div style="position: absolute; bottom: 10px">
+    <a href="/admin">ADMIN PORTAL</a>
+</div>
+{% endblock %}

@@ -1,0 +1,235 @@
+{% extends 'staffTools/base.html' %} {% block content%}
+{% load static %}
+<link rel='stylesheet' type='text/css' href="{% static 'staffTools/styles.css'%}">
+<script src="{% static 'staffTools/script.js'%}" defer></script>
+
+<!-- 
+fundamental drag container
+<div class="container" id="dragContainer"></div> 
+
+fundamental drag item
+<div class="p" id = "dragItem" class="draggable" draggable="true">OPEN</div>
+ 
+
+example drag item in drag container
+<div class="container" id="dragContainer">
+<div class="p" id = "dragItem" class="draggable" draggable="true">OPEN</div>
+</div> 
+-->
+
+<div class="container">
+    <div class="content-section">
+        <div class="d-flex justify-content-center">
+                <h1> Monday's Schedule</h1>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="content-section">
+        <div class="row">
+            <!-- Open Time Slots -->
+            <div class="col">
+
+                    <table class="table table-hover table-bordered border-dark table-responsive">
+                        <colgroup>
+                            <col >
+                            <col class="time1"/>
+                            <col class="time2"/>
+                            <col class="time3"/>
+                        </colgroup>
+                        <thead>
+                            <th class="col-2"></th>
+                            <th class="col">1-2pm</th>
+                            <th class="col">2-3pm</th>
+                            <th class="col">3-4pm</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th >Room 1 - Daniel</th>
+                            <td id="dragContainer"></td>
+                            <td id="dragContainer"></td>
+                            <td id="dragContainer"></td>
+                        </tr>
+                        <tr>
+                            <th >Room 2 - Abbie</th>
+                            <td id="dragContainer"></td>
+                            <td id="dragContainer"></td>
+                            <td id="dragContainer"></td>
+                        </tr>
+                        <tr>
+                            <th >Room 3 - Zaara</th>
+                            <td id="dragContainer"></td>
+                            <td id="dragContainer"></td>
+                            <td id="dragContainer"></td>
+                        </tr>
+                        <tr>
+                            <th >Room 4 - Jack</th>
+                            <td id="dragContainer"></td>
+                            <td id="dragContainer"></td>
+                            <td id="dragContainer"></td>
+                        </tr>
+                        <tr>
+                            <th >Room 5 - Yash</th>
+                            <td id="dragContainer"></td>
+                            <td id="dragContainer"></td>
+                            <td id="dragContainer"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+            </div>
+
+            <!-- Regular Apppointments -->
+            <div class="col">
+                <table class="table table-hover table-bordered table-responsive">
+                    <thead>
+                    <tr>
+                        <th scope="col">Times</th>
+                        <th scope="col">Regular Appointments</th>
+                        
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">1-2pm</th>
+                        <td>
+                            <div class="row">
+                                <div class="col time1" id = "dragItem" class="draggable" draggable="true">Ash</div>
+                                <div class="col time1" id = "dragItem" class="draggable" draggable="true">Noor</div>
+                                <div class="col time1" id = "dragItem" class="draggable" draggable="true">Anika</div>
+                                <div class="col time1" id = "dragItem" class="draggable" draggable="true">Emma</div>
+                                <div class="col time1" id = "dragItem" class="draggable" draggable="true">Olivia</div>
+                                <div class="col time1" id = "dragItem" class="draggable" draggable="true">Nithin</div>
+                                <div class="col time1" id = "dragItem" class="draggable" draggable="true">Saniya</div>
+                                <div class="col time1" id = "dragItem" class="draggable" draggable="true">Aarav</div>
+                                <div class="col time1" id = "dragItem" class="draggable" draggable="true">Amrutha</div>
+                                <div class="col time1" id = "dragItem" class="draggable" draggable="true">Suhani</div>
+                                
+                            </div>
+                        </td>
+                        
+                    </tr>
+                    <tr>
+                        <th scope="row">2-3pm</th>
+                        <td>
+                            <div class="row">
+                                <div class="col time2" id = "dragItem" class="draggable" draggable="true">Kayla</div>
+                                <div class="col time2" id = "dragItem" class="draggable" draggable="true">Akshitha</div>
+                                <div class="col time2" id = "dragItem" class="draggable" draggable="true">Kirti</div>
+                                <div class="col time2" id = "dragItem" class="draggable" draggable="true">Risha</div>
+                                <div class="col time2" id = "dragItem" class="draggable" draggable="true">Vikram</div>
+                                <div class="col time2" id = "dragItem" class="draggable" draggable="true">Hareem</div>
+                            </div>
+                        </td>
+                        
+                    </tr>
+                    <tr>
+                        <th scope="row">3-4pm</th>
+                        <td>
+                            <div class="row">
+                                <div class="col time3" id = "dragItem" class="draggable" draggable="true">Rishi</div>
+                                <div class="col time3" id = "dragItem" class="draggable" draggable="true">Megan</div>
+                                <div class="col time3" id = "dragItem" class="draggable" draggable="true">Vedhika</div>
+                                <div class="col time3" id = "dragItem" class="draggable" draggable="true">Allison</div>
+                                <div class="col time3" id = "dragItem" class="draggable" draggable="true">Nidhi</div>
+                            </div>
+                        </td>
+                        
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="content-section">
+        <div class="d-flex justify-content-center">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                  <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1">Previous</a>
+                  </li>
+                  <li class="page-item"><a class="page-link" href="#">Mon</a></li>
+                  <li class="page-item"><a class="page-link" href="#">Tues</a></li>
+                  <li class="page-item"><a class="page-link" href="#">Wed</a></li>
+                  <li class="page-item"><a class="page-link" href="#">Thu</a></li>
+                  <li class="page-item"><a class="page-link" href="#">Fri</a></li>
+                  <li class="page-item">
+                    <a class="page-link" href="#">Next</a>
+                  </li>
+                </ul>
+              </nav>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="content-section">
+        <div class="d-flex justify-content-center">
+            <button type="button" class="btn btn-dark "><h1> Auto Generate </h1> </button>
+        </div>
+        <br/>
+        <div class="d-flex justify-content-center">
+            <button type="button" class="btn btn-dark "><h1> Submit Schedule</h1> </button>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="container">
+    <div class="row">
+        <div class="col-1"
+        style="border:1px solid red;"> 
+            Times
+        </div>
+        <div class="col"
+        style="border:1px solid red;"> 
+            Teacher 1
+            <div class="container" id="dragContainer">
+    
+            </div>
+        </div>
+        <div class="col"
+        style="border:1px solid red;"> 
+            Teacher 2
+        </div>
+        <div class="col"
+        style="border:1px solid red;"> 
+            Teacher 3
+        </div>
+        <div class="col"
+        style="border:1px solid red;"> 
+            Teacher 4
+        </div>
+        <div class="col"
+        style="border:1px solid red;"> 
+            Available Teachers
+            <div class="container" id="dragContainer">
+                <div class="p" id = "dragItem" class="draggable" draggable="true">OPEN</div>
+                <div class="p" id = "dragItem"  class="draggable" draggable="true">OPEN</div>
+            </div>            
+        </div>
+    </div>
+    
+
+                
+       
+    </div>
+    
+</div> -->
+
+
+
+
+
+
+
+
+
+{%endblock%}
