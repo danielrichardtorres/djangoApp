@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import *
+from .models import Subject, Student, Teacher, AppointmentInstance, RepeatingAppointment
 
 # Register your models here.
 # class AppointmentAdmin(admin.ModelAdmin):
@@ -12,7 +12,8 @@ from .models import *
 #     )
 
 
-admin.site.register(Appointment)
 admin.site.register(Student)
 admin.site.register(Teacher)
 admin.site.register(Subject)
+admin.site.register(AppointmentInstance)
+admin.site.register(RepeatingAppointment)

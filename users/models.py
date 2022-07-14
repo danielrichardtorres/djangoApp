@@ -3,7 +3,6 @@ from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.base_user import BaseUserManager, AbstractBaseUser
 from django.utils.translation import gettext_lazy as _
 import uuid
-from . import subjects
 from django import forms
 import datetime
 
@@ -91,9 +90,16 @@ class CustomUser(AbstractUser):
         teacher = 3, "Teacher"
         parent = 4, "Parent"
 
-    user_type = models.PositiveSmallIntegerField(
-        ("user type"), default="student", choices=UserType.choices, unique=False
+    user_type = models.IntegerField(
+        _("user type"), choices=UserType.choices, default=UserType.student
     )
+
+    isStudent = property(lambda self: self.user_type == self.UserType.student)
+    isTeacher = property(lambda self: self.user_type == self.UserType.teacher)
+    isScheduleAdmin = property(
+        lambda self: self.user_type == self.UserType.scheduleAdmin
+    )
+    isParent = property(lambda self: self.user_type == self.UserType.parent)
 
     first_name = models.CharField("first name", max_length=50)
     last_name = models.CharField("last_name", max_length=50)

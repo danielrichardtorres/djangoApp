@@ -4,28 +4,56 @@
   /* background-color: #333; */
   padding: 1rem;
   margin-top:1rem;
+  
 }
 
 #dragItem{
-  padding: 1rem;
+  border-radius: 1rem;
+  padding: 0.5rem;
   margin: 1rem;
   border: 1px solid black;
   /* background-color: white; */
   cursor: move;
+  
 }
 
 #dragItem.dragging {
   opacity: .4;
+
 }
 
+
+
 .time1{
-  background-color: rgba(128,128,128,.25);
+
+  background-color:#c2d4e5 ;
+  font-weight: bold;
 }
 
 .time2{
-  background-color:#5F9EA0 ;
+
+  background-color: #9ab7d4;
+  font-weight: bold;
 }
 
 .time3{
-  background-color:#8FBC8F ;
+
+  background-color: #719ac2 ;
+  font-weight: bold;
 }
+
+th{
+  user-select: none;
+}
+
+
+/* some other colors
+#FECCC2
+#FD795E
+#B81C00
+
+#5391CA
+#B1CDE7
+#26537D
+*/
+

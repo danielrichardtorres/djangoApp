@@ -4,7 +4,10 @@ from users.models import CustomUser
 
 
 class Subject(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True, default="")
+    description = models.TextField(max_length=500, blank=True)
+    created_at = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.name
@@ -17,6 +20,8 @@ class Student(models.Model):
         on_delete=models.CASCADE,
     )
     subjects = models.ManyToManyField(Subject)
+    created_at = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return f"{self.user.first_name} {self.user.last_name}"
@@ -26,32 +31,37 @@ class Teacher(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     subjects = models.ManyToManyField(Subject)
     id = models.IntegerField(primary_key=True)
+    description = models.TextField(max_length=500, default="")
+    created_at = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return f"{self.user.first_name} {self.user.last_name}"
 
 
-# Create your models here.
-class Appointment(models.Model):
+# create a model for repeating appointments with a student and a subject
+class RepeatingAppointment(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
-    teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
-    notes = models.TextField()
-    datetime = models.DateTimeField("datetime")
-    duration = models.DurationField("duration")
-    subject = models.ForeignKey(Subject, on_delete=models.CASCADE, null=True)
-    id = models.IntegerField(primary_key=True)
+    subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
+    date = models.DateField(default=datetime.date.today)
+    time = models.TimeField(default=datetime.time(8, 0, 0))
+    created_at = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    frequency = models.CharField(max_length=10, default="weekly")
 
     def __str__(self):
-        return f"{self.student} and {self.teacher} on {self.datetime.strftime('%Y-%m-%d %H:%M')}"
+        return f"{self.student.user.first_name} {self.subject.name} {self.date} {self.time}"
 
 
-# class AppointmentTeacher(models.Model):
-#     teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
-#     appointment = models.ForeignKey(Appointment, on_delete=models.CASCADE)
-#     active = models.BooleanField()
-#     order = models.IntegerField()
+# class for the appointment instances on specifc days and times
+class AppointmentInstance(models.Model):
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
+    subject = models.ForeignKey(Subject, on_delete=models.CASCADE, default=None)
+    date = models.DateField(default=datetime.date.today)
+    time = models.TimeField(default=datetime.datetime.now)
+    created_at = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
-#     class Meta:
-#         ordering = [
-#             "order",
-#         ]
+    def __str__(self):
+        return f"{self.student.user.first_name} {self.subject.name} {self.date} {self.time}"

@@ -1,21 +1,32 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
-import calendar
-from calendar import HTMLCalendar
-import datetime
-from .models import Appointment, Student
 from django.contrib.auth.decorators import login_required
-from users.forms import addClientForm
 from django.contrib import messages
-from django.views.generic import ListView, DetailView
-from .models import *
+
+import datetime
+
+from users.forms import addClientForm
+from .models import Subject, Student, Teacher, AppointmentInstance, RepeatingAppointment
 
 
 # Create your views here
 @login_required
 def home(request):
     context = {"title": "Home"}
-    return render(request, "scheduler/home.html", context=context)
+
+    if request.user.isStudent:
+
+        return render(request, "scheduler/home.html", context=context)
+    elif request.user.isTeacher:
+
+        return render(request, "scheduler/home.html", context=context)
+    elif request.user.isScheduleAdmin:
+
+        return render(request, "staffTools/home.html", context=context)
+    elif request.user.isParent:
+
+        return render(request, "scheduler/home.html", context=context)
+    else:
+        return render(request, "scheduler/home.html", context=context)
 
 
 @login_required
@@ -23,9 +34,9 @@ def studentScheduleView(request):
     relatedStudent = request.user.student.get()
 
     if isinstance(relatedStudent, Student):
-        appointments = Appointment.objects.filter(student=relatedStudent)
+        appointments = AppointmentInstance.objects.filter(student=relatedStudent)
     else:
-        appointments = Appointment.objects.all()
+        appointments = AppointmentInstance.objects.all()
     # print(appointments)
 
     dt = datetime.date.today()
@@ -35,10 +46,6 @@ def studentScheduleView(request):
     appointments = appointments.filter(datetime__range=[start, end])
     context = {"appointments": appointments}
     return render(request, "scheduler/appointment_list.html", context=context)
-
-
-class AppointmentDetailView(DetailView):
-    model = Appointment
 
 
 # @login_required

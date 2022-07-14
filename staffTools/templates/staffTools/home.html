@@ -1,0 +1,153 @@
+{% extends 'staffTools/base.html' %} {% block content%}
+
+<div class="col-md-8">
+            
+<h1> Welcome, {{ user.first_name}}! 😊</h1>
+<br>
+<!-- <p>  User Type: {{ user.user_type }}</p> -->
+<div class="content-section">
+  <h2> Upcoming Appointments </h2>
+  <hr>
+  <div class="accordion" id="accordionToday">
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingOne">
+        
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseTwo">
+          <h4>John has SAT Math with Daniel at 12:30pm</h4>
+        </button>
+      </h2>
+      <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          <strong>Homework: </strong>Equations of a Circle 1, 2, 3
+          <p class='text-muted'> Reminder: Bring your scientific or graphing calculator</p>
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingTwo">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          <h4>Abbie has SAT Reading with Yash at 12:30pm</h4>
+        </button>
+      </h2>
+      <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          <strong>Homework: </strong>Equations of a Circle 1, 2, 3
+          <p class='text-muted'> Reminder: Bring your scientific or graphing calculator</p>
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingThree">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          <h4>Sally has SAT Math with Maya at 1:30pm</h4>
+        </button>
+      </h2>
+      <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          <strong>Homework: </strong>Equations of a Circle 1, 2, 3
+          <p class='text-muted'> Reminder: Bring your scientific or graphing calculator</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="content-section">
+  <h2> Upcoming Consultation </h2>
+  <hr>
+  <h3> SAT Math with Daniel </h3>
+  <strong>Homework: </strong>Equations of a Circle 1, 2, 3
+  <p class='text-muted'> Due: This Thursday</p>
+  <hr>
+  <h3> SAT Reading with Abbie </h3>
+  <strong>Homework: </strong>Gerunds and Parentheticals 2
+  <p class='text-muted'> Due: This Thursday</p>
+</div>
+<div class="content-section">
+  <h2> Tutoring Hours Remaining: 2.5 </h2>
+  <small class="text-muted">
+    Need more hours? 
+    <a class="ml-2" href="#">Click here to let us know</a>
+  </small>
+</div>
+
+
+
+  </div>
+<div class="col-md-4">
+  <div class="content-section">
+    <h3>Admin Links</h3>
+    <p class='text-muted'>Here's some quick links
+      <div class="list-group">
+        <a>
+          <div class="list-group-item">
+            <h4 class="list-group-item-heading">
+              <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+              <span class="ml-2">Profile</span>
+            </h4>
+          </div>
+        </a>
+        <a>
+          <div class="list-group-item">
+            <h4 class="list-group-item-heading">
+              <i class="fa fa-calendar" aria-hidden="true"></i>
+              <span class="ml-2">Appointments</span>
+            </h4>
+          </div>
+
+        </a>
+        <a>
+          <div class="list-group-item">
+            <h4 class="list-group-item-heading">
+              <i class="fa fa-book" aria-hidden="true"></i>
+              <span class="ml-2">Classes</span>
+            </h4>
+          </div>
+        </a>
+        <a>
+          <div class="list-group-item">
+            <h4 class="list-group-item-heading">
+              <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+              <span class="ml-2">Consultations</span>
+            </h4>
+          </div>
+        </a>
+        <a>
+          <div class="list-group-item">
+            <h4 class="list-group-item-heading">
+              <i class="fa fa-calendar-times-o" aria-hidden="true"></i>
+              <span class="ml-2">Cancellations</span>
+            </h4>
+          </div>
+        </a>
+        <a>
+          <div class="list-group-item">
+            <h4 class="list-group-item-heading">
+              <i class="fa fa-calendar-plus-o" aria-hidden="true"></i>
+              <span class="ml-2">Add Appointment</span>
+            </h4>
+          </div>
+        </a>
+        <a>
+          <div class="list-group-item">
+            <h4 class="list-group-item-heading">
+              <i class="fa fa-calendar-plus-o" aria-hidden="true"></i>
+              <span class="ml-2">Add Class</span>
+            </h4>
+          </div>
+        </a>
+        
+      </div>
+    </p>
+  </div>
+</div>
+
+<div style="position: absolute; bottom: 10px">
+  <a href="/admin">ADMIN PORTAL</a>
+  </div>
+{%endblock%}
+
+
+
+
+ 

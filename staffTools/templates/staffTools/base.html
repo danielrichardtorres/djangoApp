@@ -4,7 +4,7 @@
   <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-    <link rel='stylesheet' type='text/css' href="{% static 'scheduler/main.css'%}"></link>
+    <link rel='stylesheet' type='text/css' href="{% static 'scheduler/main.css'%}">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {%if title%}
@@ -15,8 +15,10 @@
   </head>
   <body>
     <header class="site-header">
+
+    
       <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
-        <div class="container">
+        <div class="container-fluid">
           <a class="navbar-brand mr-4" href="{% url 'scheduler-home'%}">Tutor Portal</a>
           <button
             class="navbar-toggler"
@@ -26,107 +28,97 @@
             aria-controls="navbarToggle"
             aria-expanded="false"
             aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarToggle">
-            <div class="navbar-nav mr-auto">
-              <a class="nav-item nav-link" href="{% url 'scheduler-home'%}">Home</a>
-              <!-- <a class="nav-item nav-link" href="{% url 'scheduler-about'%}">About</a> -->
-            </div>
-            <!-- Navbar Right Side -->
-            <div class="navbar-nav">
-              {% if user.is_authenticated %}
-                
-                
-                {% if user.user_type == 1 %}
-                <!-- User is Schedule Admin -->
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Staff Options
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    
-                    
-                    <a class="dropdown-item" href="#">Schedule Appointment</a>
-                    <a class="dropdown-item" href="#">Weekly Schedule</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="{% url 'scheduler-addclient'%}">Add Client</a>
-                    <a class="dropdown-item" href="#">Add Student</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Manage Users</a>
+          ></button>
 
-                  </div>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="navbar-nav mr-auto">
+              
+
+            
+            {% if user.is_authenticated %}
+
+            <ul class="navbar-nav">
+              <li>
+                <a class="nav-item nav-link" href="{% url 'scheduler-home'%}">Home</a>
+              </li>
+              
+              
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Scheduling
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="{% url 'build_schedule'%}">Build Weekly Schedule</a></li>
+                  <li><a class="dropdown-item" href="#">View This Weeks Schedule</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="#">Manage Schedules</a></li>
+                  <li><a class="dropdown-item" href="#">Manage Appointments</a></li>
+                  <!-- add appointments -->
+                </ul>
+              </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Manage Users/Subjects
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="#">Manage Tutors</a></li>
+                    <li><a class="dropdown-item" href="#">Manage Students</a></li>
+                    <li><a class="dropdown-item" href="#">Manage Subjects</a></li>
+                    <li><a class="dropdown-item" href="#">Manage Parents</a></li>
+                  </ul>
+                  <!-- add users -->
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Add Users/Subjects
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <li><a class="dropdown-item" href="#">Add Tutor</a></li>
+                      <li><a class="dropdown-item" href="#">Add Student</a></li>
+                      <li><a class="dropdown-item" href="#">Add Parent</a></li>
+                      <li><a class="dropdown-item" href="#">Add Subject</a></li>
+                    </ul>
                 </li>
-                {% endif %}
-                {% if user.user_type == 2 or user.user_type == 1 %}
-                <!-- User is Student -->
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Student Options
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="{% url 'scheduler-myschedule'%}">My Schedule</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">Homework</a>
-                      <a class="dropdown-item" href="#">My Tests</a>
-                      <a class="dropdown-item" href="#">My Profile</a>
-                    </div>
-                  </li>
-                {% endif %}
-                {% if user.user_type == 3 or user.user_type == 1 %} 
-                <!-- User is Teacher -->
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Teacher Options
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="#">My Schedule</a>
-                      <a class="dropdown-item" href="#">My Availibility</a>
-                      <a class="dropdown-item" href="#">My Profile</a>
-                    </div>
-                  </li>
-                {% endif %}
-                {% if user.user_type == 4 or user.user_type == 1 %} 
-                <!-- User is Parent -->
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Parent Options
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="#">My Students</a>
-                      <a class="dropdown-item" href="#">My Plan</a>
-                      <a class="dropdown-item" href="#">Billing Overview</a>
-                    </div>
-                  </li> 
-                {%endif%}
+
                 
-              <a class="nav-item nav-link" href="{% url 'logout'%}">Logout</a>
-              {% else %}
-              <a class="nav-item nav-link" href="{% url 'login'%}">Login</a>
-              <a class="nav-item nav-link" href="{% url 'register'%}">Register</a>
-              {% endif %}
-            </div>
+            </ul>
+
+            <!-- <form class="d-flex">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form> -->
+
+            <div></div>
+
+            <a class="nav-item nav-link" href="{% url 'logout'%}">Logout</a>
+            {% else %}
+            <a class="nav-item nav-link" href="{% url 'login'%}">Login</a>
+            <a class="nav-item nav-link" href="{% url 'register'%}">Register</a>
+            {% endif %}
+
+
           </div>
+
         </div>
       </nav>
+    
+
     </header>
 
-    <main role="main" class="container-fluid" style="padding: 2rem;">
-        <div class="row">
-          {% if messages %}
-            {% for message in messages %}
-              <div class="alert alert-{{ message.tags }}">
-              {{ message }}
-              </div>
-            {% endfor %}
-          {% endif %}
-        </div>
-        
-        <div class="row">
-        {% block content %}{% endblock %}
-        </div>
-    </main>
+    <main role="main" class="container">
+      <div class="row">
+        {% if messages %}
+          {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+            {{ message }}
+            </div>
+          {% endfor %}
+        {% endif %}
+      </div>
+      
+      <div class="row">
+      {% block content %}{% endblock %}
+      </div>
+  </main>
 
     <script
       src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

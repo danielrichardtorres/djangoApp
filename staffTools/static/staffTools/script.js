@@ -35,11 +35,30 @@ containers.forEach(container =>{
         // console.log(afterElement)
 
         const draggable = document.querySelector('.dragging')
-        // we're not above anything
-        if (afterElement == null ){
-            container.appendChild(draggable)
-        } else {
-            container.insertBefore(draggable, afterElement)
+       
+        
+        timeMatch = false
+        draggable.classList.forEach( classAttribute =>{
+            if (container.classList.contains(classAttribute)){
+                timeMatch = true
+            }
+        })
+        
+        if (timeMatch){
+
+            // get container row
+            const containerRow = container.getElementsByClassName('row')[0]
+            
+            // if containerRow has less than 2 children, we can add the draggable to the end
+            if (containerRow.childElementCount < 2){
+                console.log(containerRow.childElementCount)
+                if (afterElement == null ){        // we're not above anything    
+                    containerRow.appendChild(draggable)
+                } else {            
+                    containerRow.insertBefore(draggable, afterElement)
+                }
+            }
+
         }
 
         
